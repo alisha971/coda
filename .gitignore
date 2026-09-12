@@ -1,0 +1,221 @@
+# ============================================================
+# CODA Research Project - .gitignore
+# ============================================================
+
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env/
+.python-version
+
+# Packaging / build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# -------------------------
+# Environment & secrets
+# -------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.secret
+secrets/
+credentials/
+config.local.*
+settings.local.*
+
+# -------------------------
+# Jupyter
+# -------------------------
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# -------------------------
+# IDE / editor files
+# -------------------------
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.DS_Store
+
+# -------------------------
+# OS files
+# -------------------------
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/
+
+# -------------------------
+# Test / coverage artifacts
+# -------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+coverage.html
+nosetests.xml
+pytestdebug.log
+
+# -------------------------
+# Experiment outputs
+# Keep source code, configs, notebooks, and reports tracked.
+# Ignore generated artifacts that can become very large.
+# -------------------------
+outputs/
+output/
+results/
+artifacts/
+runs/
+checkpoints/
+tensorboard/
+wandb/
+mlruns/
+
+# Generated figures / plots
+generated_figures/
+generated_plots/
+
+# -------------------------
+# ML model artifacts
+# -------------------------
+models/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.bin
+
+# -------------------------
+# Audio / video / temporary media
+# -------------------------
+*.wav
+*.flac
+*.mp3
+*.m4a
+*.ogg
+*.aac
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# -------------------------
+# Large datasets / downloaded corpora
+# -------------------------
+data/
+datasets/
+corpora/
+downloads/
+cache/
+.cache/
+
+# Common dataset/archive formats
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npz
+*.npy
+
+# Archives / extracted source packages
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# -------------------------
+# Hugging Face / ML caches
+# -------------------------
+.huggingface/
+huggingface/
+transformers_cache/
+hf_cache/
+
+# -------------------------
+# Speech / audio processing caches
+# -------------------------
+*.rttm
+*.ctm
+*.TextGrid
+*.lab
+alignment_cache/
+features/
+embeddings/
+
+# -------------------------
+# Temporary / scratch files
+# -------------------------
+tmp/
+temp/
+scratch/
+*.tmp
+*.bak
+*.orig
+
+# -------------------------
+# Local research / internal configuration
+# These are machine- or workflow-specific and should not be
+# required for someone else to understand the research.
+# -------------------------
+.claude/
+CODA_PREFERENCES.md
+**/CLAUDE.md
+**/SKILL.md
+**/skills/
+CODA_MASTER_SPECIFICATION.md
+
+# Keep the human-readable Git command reference tracked.
+# CODA_GIT_COMMANDS.md
+
+# -------------------------
+# Local databases / caches
+# -------------------------
+*.db
+*.sqlite
+*.sqlite3
+
+# -------------------------
+# Platform-specific experiment files
+# -------------------------
+.DVC/
+.dvc/cache/
+
+# -------------------------
+# Future generated documentation
+# Ignore only clearly generated/local documentation artifacts;
+# normal .md research documents remain tracked.
+# -------------------------
+site/
+docs/_build/
