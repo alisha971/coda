@@ -66,9 +66,15 @@ Desktop.ini
 
 # -------------------------
 # Logs
+#
+# Scratch logs are ignored, but run logs stored beside a result are provenance:
+# they record which split each fit used and which configuration produced it.
 # -------------------------
 *.log
 logs/
+!results/**/*.log
+!outputs/**/*.log
+!runs/**/*.log
 
 # -------------------------
 # Test / coverage artifacts
@@ -86,27 +92,31 @@ pytestdebug.log
 
 # -------------------------
 # Experiment outputs
-# Keep source code, configs, notebooks, and reports tracked.
-# Ignore generated artifacts that can become very large.
+#
+# Experiment results are research evidence, not disposable build output.
+# Every reported number must trace to a stored run artifact, and every figure
+# must be regenerable from stored results, so results/, outputs/, runs/,
+# artifacts/ and generated figures are TRACKED.
+#
+# Only tool-managed directories and large binaries stay ignored. The binary
+# extension rules further down (*.pt, *.npy, *.pkl, *.parquet, ...) act as the
+# size guard inside tracked result directories. To track one such file
+# deliberately, stage it with: git add -f <path>
 # -------------------------
-outputs/
-output/
-results/
-artifacts/
-runs/
 checkpoints/
 tensorboard/
 wandb/
 mlruns/
 
-# Generated figures / plots
-generated_figures/
-generated_plots/
-
 # -------------------------
 # ML model artifacts
+#
+# Anchored to the repository root so that src/models/ — which holds the ridge,
+# reduced-rank ridge, variance model and the neural architecture source — stays
+# tracked. An unanchored "models/" matches at any depth and would silently
+# untrack the project's estimator code.
 # -------------------------
-models/
+/models/
 *.pt
 *.pth
 *.ckpt
@@ -130,12 +140,15 @@ models/
 
 # -------------------------
 # Large datasets / downloaded corpora
+#
+# Anchored to the repository root so that src/data/ — the information firewall,
+# split builder and pair constructor — stays tracked.
 # -------------------------
-data/
-datasets/
-corpora/
-downloads/
-cache/
+/data/
+/datasets/
+/corpora/
+/downloads/
+/cache/
 .cache/
 
 # Common dataset/archive formats
@@ -171,8 +184,10 @@ hf_cache/
 *.TextGrid
 *.lab
 alignment_cache/
-features/
-embeddings/
+# Anchored so that src/features/ — prosody extraction, the frozen text encoder
+# and the normalisation-statistics module — stays tracked.
+/features/
+/embeddings/
 
 # -------------------------
 # Temporary / scratch files
@@ -195,6 +210,16 @@ CODA_PREFERENCES.md
 **/SKILL.md
 **/skills/
 CODA_MASTER_SPECIFICATION.md
+
+# Implementation-control documents: build plans, task breakdowns and working
+# notes guide implementation rather than constituting the research artifact.
+CODA_IMPLEMENTATION_PLAN.md
+docs/internal/
+TODO.md
+NOTES.md
+CODA_GIT_COMMANDS.md
+CODA_COLAB_RUNBOOK.md
+docs/decision_log.md
 
 # Keep the human-readable Git command reference tracked.
 # CODA_GIT_COMMANDS.md
