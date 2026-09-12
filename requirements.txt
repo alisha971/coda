@@ -1,0 +1,15 @@
+# Pinned to match environment.yml. See that file for why the pins are exact.
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.2
+scikit-learn==1.5.1
+statsmodels==0.14.2
+matplotlib==3.9.1
+pyyaml==6.0.1
+pytest==8.3.2
+ruff==0.5.5
+praat-parselmouth==0.4.3
+sentence-transformers==3.0.1
+torch==2.3.1
+transformers==4.43.3
+soundfile==0.12.1
