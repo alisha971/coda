@@ -1,0 +1,17 @@
+# J1: the condition sweep. Four information conditions on two splits.
+# Only the information available changes between conditions.
+conditions:
+  - name: Z_content
+    inputs: [reply_text, reply_length, partner_text_excluded, metadata]
+    answers: how predictable delivery is at all
+  - name: plus_partner_text
+    inputs: [reply_text, reply_length, partner_text, metadata]
+    answers: what the partner transcript adds
+  - name: plus_partner_delivery
+    inputs: [reply_text, reply_length, partner_text, metadata, partner_delivery]
+    answers: what partner delivery adds - THE PRIMARY COMPARISON
+  - name: plus_self_previous
+    inputs: [reply_text, reply_length, partner_text, metadata, self_previous_delivery]
+    answers: the self-momentum competitor for H4
+
+splits: [speaker_disjoint, dyad_disjoint]

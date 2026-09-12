@@ -1,0 +1,13 @@
+# Corpus and sampling. Selection seeds are recorded so the sample is reproducible.
+corpus: CANDOR
+fallback_corpus: AMI          # two-party stretches only; pre-committed G0 fallback
+n_conversations: 250          # floor of the specified 250-350 range
+pilot_n_conversations: 40     # the G0 pilot, and the development subset
+selection_seed: 20260912
+process_and_discard: true     # audio deleted after each shard is measured
+shard_conversations: 25       # sized so one shard completes inside a Colab session
+
+channel_qc:
+  min_channel_pass_rate: 0.80     # G0
+  max_feature_droppage: 0.15      # G0
+  exclude_conversation_if_either_channel_fails: true

@@ -1,0 +1,31 @@
+# The frozen neural configuration. Searched ONCE on the real condition's
+# validation set, then hashed and reused unchanged for every donor condition
+# and every ablation. The hash is asserted equal across runs.
+#
+# Nothing in this file may differ between conditions. Only partner_mode and
+# the donor assignment change, and neither alters a parameter shape.
+architecture:
+  d_model: 192
+  n_blocks: 3
+  n_heads: 4
+  ffn_dim: 384
+  pre_norm: true
+  attention_pooling: learned_query
+  fusion_blocks: 1              # one cross-attention block; generates nothing
+  head: 2_layer_mlp
+  output_dim: 8                 # eight target dimensions
+  heteroscedastic: optional     # used only if it improves validation log-likelihood
+
+training:
+  seeds: [0, 1, 2]              # seed variance reported separately from donor-null variance
+  early_stopping_on: validation_loss
+  # Remaining hyperparameters (optimiser, learning rate and schedule, batch size,
+  # epoch budget, dropout, weight decay, gradient clipping, patience) are fixed
+  # during the single validation search and written here before J1 runs.
+
+capacity_control:
+  identical_across_conditions: true
+  partner_pathway_never_removed: true   # ablation feeds a learned null token sequence
+  assert_parameter_count_identical: true
+  assert_config_hash_identical: true
+  no_test_set_model_selection: true

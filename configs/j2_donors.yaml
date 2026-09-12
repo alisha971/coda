@@ -1,0 +1,23 @@
+# J2: the null family. Donor draws are seeded and saved so nulls are
+# exactly reproducible. Asserted: donor is never the true partner, and
+# donors are always drawn within the same split.
+n_draws_layer1: 500
+n_draws_layer2: 30          # each draw is a full training run; coarse by necessity
+donor_seed: 20260912
+
+N1_cross_dyad:
+  drawn_from: another dyad in the same split
+  matched_on: [partner_turn_duration_decile, partner_turn_word_count]
+  preserves: [dimensionality, scale, marginals, length_structure, model_capacity]
+  destroys: [the pairing]
+
+N2_within_dyad_distant:
+  drawn_from: same dyad, same partner speaker
+  min_turn_distance: 10
+  preserves: [dyad, speaker, session, channel, register, broad_topic, global_style]
+  destroys: [local adjacency]
+
+# Pre-committed reading of the ordering:
+#   real > N2 > N1  -> local adaptation
+#   real ~ N2 > N1  -> conversation-level style
+#   real ~ N1       -> nothing

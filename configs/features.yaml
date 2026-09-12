@@ -1,0 +1,37 @@
+# Target extraction and the conditioning set.
+#
+# The prosody parameters are pinned identically in both execution environments.
+# An F0 tracker whose defaults shift between library versions would move every
+# target value in the study, so these are configuration, not defaults.
+
+prosody:
+  backend: parselmouth        # Praat; matches the source of the cited feature set
+  f0_floor_hz: 75.0
+  f0_ceiling_hz: 500.0
+  frame_step_s: 0.01
+  boundary_window_s: 0.300    # the final-300 ms log-F0 slope
+  min_voiced_frames: 10       # below this the turn is dropped and counted
+
+# Four blocks, eight dimensions. Confirmatory inference is at block level:
+# four tests, equal weight. See PREREGISTRATION.md section 4 for the count.
+target_blocks:
+  pitch_level_span: [mean_log_f0, log_f0_range_p95_p5]
+  pitch_boundary:   [log_f0_slope_final_300ms]
+  energy:           [mean_intensity, intensity_range]
+  timing:           [articulation_rate, pause_ratio, longest_internal_pause]
+
+text:
+  encoder: sentence-transformers/all-MiniLM-L6-v2
+  frozen: true                # never trained
+  pca_dim: 64                 # fitted on training data only
+
+ssl:
+  sources: [wavlm_l3, wavlm_l6, wavlm_l9, wavlm_l12, hubert_final]
+  frozen: true                # no gradient reaches these, for any speaker
+  tail_seconds: 8.0           # turn-final: the material adjacent to the reply
+  max_frames: 400             # at 50 Hz
+  pca_dim: 128                # fitted on training partner turns only
+  dtype: float16
+
+metadata: [reply_word_count, reply_syllable_count, turn_position,
+           conversation_loudness_offset, replier_identity]

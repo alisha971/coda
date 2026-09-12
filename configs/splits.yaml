@@ -1,0 +1,13 @@
+# Dyad-level splits under a speaker-disjointness constraint.
+# A participant appears in exactly one split; this is asserted, not assumed.
+primary:
+  scheme: speaker_disjoint
+  train: 0.70
+  val: 0.10
+  test: 0.20
+  seed: 20260912
+  cluster_near_duplicates: true   # near-duplicate conversations go whole to one split
+
+contrast:
+  scheme: dyad_disjoint           # fitted as a contrast; first on the drop-first list
+  seed: 20260912

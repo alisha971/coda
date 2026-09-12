@@ -1,0 +1,19 @@
+# J4: the function interaction. Level E.
+# The classifier sees the turn-pair TRANSCRIPT ONLY - never audio,
+# never delivery features. Enforced by input schema and code review.
+categories:
+  - question_to_answer
+  - assessment_opinion_to_response
+  - narrative_inform_to_continuation
+  - backchannel_adjacent
+  - other                      # excluded from analysis, not modelled
+
+reliability:
+  hand_labelled_pairs: 300
+  min_kappa_for_confirmatory: 0.6    # G4: at least 2 categories must pass
+  min_pairs_per_stratum: 200         # below this, descriptive only
+
+analysis:
+  test: function_by_partner_delivery_interaction_term
+  model: mixed_effects               # not subgroup comparison by eye
+  companion: per_stratum_delta_with_intervals
