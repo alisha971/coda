@@ -1,4 +1,4 @@
-# CODA
+# Conversational Delivery Adaptation (CODA)
 
 **Conversational Delivery Adaptation: a foundational empirical study for Situational Style Cloning.**
 
