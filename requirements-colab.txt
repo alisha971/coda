@@ -1,0 +1,9 @@
+# Installed by the setup cell of every notebook on Colab.
+#
+# Only the measurement stack is pinned. Everything else is what the Colab image
+# ships, and its version is written into every run record. Forcing the full
+# local pin set onto Colab would downgrade packages the image depends on.
+praat-parselmouth==0.4.7   # F0 and intensity; Praat, matching the cited feature set
+soundfile==0.12.1          # reads the corpus's 32-bit float WAV files bit-exactly
+cmudict==1.0.32            # dictionary syllables (rule fallback)
+sentence-transformers==3.0.1  # MiniLM text encoder (notebook 09+): one version in every session

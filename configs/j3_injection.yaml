@@ -5,7 +5,9 @@ injection:
   couplings:
     - name: identity_matched_dimensions
     - name: cross_dimension_variant
-  beta_targets_partial_r2: [0.002, 0.005, 0.01, 0.02, 0.03, 0.05]
+  # 0.0025 added 2026-10-16 so the G2 sensitivity grid (0.0025, 0.005, 0.01) is measured,
+  # not interpolated; inside the registered 0.002-0.05 span.
+  beta_targets_partial_r2: [0.002, 0.0025, 0.005, 0.01, 0.02, 0.03, 0.05]
   beta_zero_calibration: true     # G1 and T2
 
 gates:

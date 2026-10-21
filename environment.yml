@@ -11,6 +11,8 @@ dependencies:
   - numpy=1.26.4
   - scipy=1.13.1
   - pandas=2.2.2
+  - pyarrow=17.0.0            # parquet tables
+  - requests=2.32.3           # corpus acquisition
   - scikit-learn=1.5.1
   - statsmodels=0.14.2        # mixed-effects re-check
   - matplotlib=3.9.1
@@ -20,8 +22,9 @@ dependencies:
   - jupyterlab=4.2.4
   - pip
   - pip:
-      - praat-parselmouth==0.4.3   # F0 and intensity; matches the cited feature set
+      - praat-parselmouth==0.4.7   # F0 and intensity; matches the cited feature set
       - sentence-transformers==3.0.1
       - torch==2.3.1
       - transformers==4.43.3
       - soundfile==0.12.1
+      - cmudict==1.0.32

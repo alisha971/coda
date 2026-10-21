@@ -11,6 +11,25 @@ prosody:
   frame_step_s: 0.01
   boundary_window_s: 0.300    # the final-300 ms log-F0 slope
   min_voiced_frames: 10       # below this the turn is dropped and counted
+  # Praat's autocorrelation pitch settings, written out rather than left to
+  # library defaults (the values are Praat's own defaults).
+  max_candidates: 15
+  very_accurate: false
+  silence_threshold: 0.03
+  voicing_threshold: 0.45
+  octave_cost: 0.01
+  octave_jump_cost: 0.35
+  voiced_unvoiced_cost: 0.14
+  intensity_subtract_mean: true   # removes DC offset before intensity, Praat default
+
+  # Where pitch is analysed.
+  # "vad"                 - released voice-activity segments only
+  # "vad_plus_transcript" - plus the regions the transcript places speech in,
+  #                         merged within the gap below. The detector misses
+  #                         documented speech on some files, which left long
+  #                         turns unmeasured; the union can only widen coverage.
+  pitch_segment_source: vad_plus_transcript
+  pitch_segment_merge_gap_s: 0.050
 
 # Four blocks, eight dimensions. Confirmatory inference is at block level:
 # four tests, equal weight. See PREREGISTRATION.md section 4 for the count.
@@ -22,6 +41,9 @@ target_blocks:
 
 text:
   encoder: sentence-transformers/all-MiniLM-L6-v2
+  # Pinned Hub commit (main on 2026-10-16; its last change was model-card metadata
+  # only). Weights are downloaded by notebook 09.
+  revision: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41
   frozen: true                # never trained
   pca_dim: 64                 # fitted on training data only
 

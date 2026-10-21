@@ -245,3 +245,36 @@ docs/decision_log.md
 # -------------------------
 site/
 docs/_build/
+
+# Personal notes (saved replies)
+CODA_MY_NOTES.md
+
+# Internal audit working papers (used later to write the experiment report)
+docs/audit/
+
+# Internal scoping and review papers (simulations/ stays tracked)
+docs/research/PROJECT_SCOPE_OPTIONS.md
+docs/research/RECOMMENDED_SCOPE_AND_CHANGE_IMPACT.md
+docs/research/RESEARCH_QUESTION_AUDIT.md
+docs/literature/DECISION_RESOLUTION_REVIEW.md
+
+# Agent task prompts
+to do.md
+
+# Local-only decision register, approval checks and their tests
+/internal/
+
+# Process logs (an experiment report will be added at the end)
+docs/research_journal.md
+docs/session_log.md
+
+# Experiment report: remove this line when the report is final
+docs/experiment_report.md
+
+
+# Pytest records tied to one machine's code fingerprint, and the first pilot snapshot
+/results/integrity/
+/archive/
+
+# Decision evidence table: superseded by METHOD_DECISION_REGISTER.md
+docs/literature/DECISION_EVIDENCE_TABLE.csv

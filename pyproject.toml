@@ -14,6 +14,9 @@ packages = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q --strict-markers"
+markers = [
+    "integration: end-to-end synthetic dry run of the whole software pipeline (about a minute)",
+]
 
 [tool.ruff]
 line-length = 100

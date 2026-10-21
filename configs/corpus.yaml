@@ -1,13 +1,41 @@
 # Corpus and sampling. Selection seeds are recorded so the sample is reproducible.
-corpus: CANDOR
+# Corpus changed from CANDOR by PREREGISTRATION.md (2026-09-23).
+
+corpus: seamless_naturalistic
 fallback_corpus: AMI          # two-party stretches only; pre-committed G0 fallback
-n_conversations: 250          # floor of the specified 250-350 range
+n_conversations: 250          # sessions (dyads); floor of the specified 250-350 range
 pilot_n_conversations: 40     # the G0 pilot, and the development subset
 selection_seed: 20260912
-process_and_discard: true     # audio deleted after each shard is measured
-shard_conversations: 25       # sized so one shard completes inside a Colab session
+process_and_discard: true     # audio deleted after each interaction is measured
 
+# Pinned sources. The dataset card and file index are read at these revisions,
+# so the sampling frame cannot drift if the upstream repositories change.
+source:
+  hf_repo: facebook/seamless-interaction
+  hf_revision: ba9e212ab927ba05bfd80778f53bf9de69f65e3b
+  github_repo: facebookresearch/seamless_interaction
+  github_commit: b61b0324461f05221659cc38a1130f854fdd2855
+  # Per-file audio, transcript and VAD. Unversioned upstream, so every fetched
+  # file's size and SHA-256 are logged and re-verified on any later re-fetch.
+  file_base_url: https://dl.fbaipublicfiles.com/seamless_interaction
+  licence: CC-BY-NC-4.0
+
+# Sampling frame. Order of application is the order below.
+frame:
+  label: naturalistic
+  relationship: stranger
+  interaction_types: [ipc_conversation]
+  # Prompts that instruct how to speak are excluded: instructed delivery would
+  # be a shared external driver of the measured variable.
+  exclude_two_sided_role_prompts: true      # interactions.csv ipc_b is set
+  exclude_prompt_text_regex: '\btone\b|\bspeak (?:in|with)\b|\brespond with a\b'
+  one_session_per_speaker: true             # speaker-disjoint splits become exact
+
+# Channel QC. Objective failures only; continuous criteria are
+# reported in notebook 04 and any cut on them is stated with its reason.
 channel_qc:
-  min_channel_pass_rate: 0.80     # G0
-  max_feature_droppage: 0.15      # G0
-  exclude_conversation_if_either_channel_fails: true
+  min_channel_pass_rate: 0.80     # G0, from the specification
+  max_feature_droppage: 0.15      # G0, from the specification
+  expected_sample_rate_hz: 48000
+  max_pair_duration_mismatch_s: 0.5
+  exclude_interaction_if_either_channel_fails: true

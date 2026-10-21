@@ -25,24 +25,18 @@ import hashlib
 import json
 import platform
 import subprocess
-from dataclasses import asdict, dataclass, field, fields, is_dataclass
+from dataclasses import asdict, dataclass, field, is_dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Literal
 
 # --------------------------------------------------------------------------
-# Vocabulary fixed by the master specification
+# Vocabulary of the study
 # --------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
-# Target vector size: EIGHT dimensions in four blocks.
-#
-# The master specification's prose says nine in thirteen places, but its
-# section 8.1 table -- and the identical table in the predecessor document,
-# marked "(unchanged)" -- enumerates eight: 2 + 1 + 2 + 3. The table is the
-# only place the dimensions are named, and no source names a ninth. Resolved
-# 2026-09-12 as a counting error carried between drafts; the correction is
-# recorded in PREREGISTRATION.md before J1.
+# Target vector size: EIGHT dimensions in four blocks (2 + 1 + 2 + 3), as in
+# PREREGISTRATION.md section 4.
 #
 # Confirmatory inference is at block level -- four tests, equal weight per
 # block -- so the count affects the delivery head width, the probe width and
@@ -94,7 +88,7 @@ PartnerMode = Literal["real", "donor", "null_token", "delivery_vector_interpreta
 class DataConfig:
     """Corpus, sampling and split settings."""
 
-    corpus: str = "CANDOR"
+    corpus: str = "seamless_naturalistic"
     n_conversations: int = 250
     pilot_n_conversations: int = 40
     selection_seed: int = 20260912
@@ -103,7 +97,7 @@ class DataConfig:
     val_frac: float = 0.10
     test_frac: float = 0.20
     split_seed: int = 20260912
-    #: Minimum turn distance for an N2 donor, from the master specification.
+    #: Minimum turn distance for an N2 donor (PREREGISTRATION.md section 6).
     n2_min_turn_distance: int = 10
 
 
@@ -111,12 +105,27 @@ class DataConfig:
 class FeatureConfig:
     """Target extraction and conditioning-set settings."""
 
-    #: Praat via parselmouth (UD-19), matching the feature set's source work.
+    #: Praat via parselmouth, matching the feature set's source work.
     f0_backend: str = "parselmouth"
     f0_floor_hz: float = 75.0
     f0_ceiling_hz: float = 500.0
     frame_step_s: float = 0.01
     boundary_window_s: float = 0.300
+    min_voiced_frames: int = 10
+    #: Praat autocorrelation pitch settings, pinned explicitly.
+    max_candidates: int = 15
+    very_accurate: bool = False
+    silence_threshold: float = 0.03
+    voicing_threshold: float = 0.45
+    octave_cost: float = 0.01
+    octave_jump_cost: float = 0.35
+    voiced_unvoiced_cost: float = 0.14
+    intensity_subtract_mean: bool = True
+    #: Where pitch is analysed. "vad" analyses the
+    #: released voice-activity segments only; "vad_plus_transcript" adds the
+    #: regions the transcript places speech in, which the detector can miss.
+    pitch_segment_source: str = "vad_plus_transcript"
+    pitch_segment_merge_gap_s: float = 0.050
     text_encoder: str = "sentence-transformers/all-MiniLM-L6-v2"
     text_pca_dim: int = 64
     ssl_pca_dim: int = 128
@@ -128,10 +137,17 @@ class FeatureConfig:
 class RidgeConfig:
     """Layer 1, the statistical instrument. Deterministic: no seeds."""
 
+    #: λ as a multiple of the number of fitting rows. Predictor columns
+    #: are standardised, so the eigenvalues of XᵀX scale with n; a relative grid
+    #: means the same shrinkage on the pilot and on the full sample. A selected
+    #: λ at either end of the grid is flagged in every result.
     lambda_grid: tuple[float, ...] = (
-        1e-4, 1e-3, 1e-2, 1e-1, 1.0, 1e1, 1e2, 1e3, 1e4,
+        1e-5, 3e-5, 1e-4, 3e-4, 1e-3, 3e-3, 1e-2, 3e-2, 1e-1, 3e-1, 1.0, 3.0, 10.0, 30.0, 100.0,
     )
-    rank_grid: tuple[int, ...] = (1, 2, 3, 4, 5, 6, 7, 8, 9)
+    #: Reduced-rank ridge ranks. The partner→reply coefficient block is 8 × 8,
+    #: so its rank is at most 8 (an earlier grid ran to 9, a remnant of the
+    #: nine-dimension count corrected in PREREGISTRATION §4).
+    rank_grid: tuple[int, ...] = (1, 2, 3, 4, 5, 6, 7, 8)
     nested_cv_folds: int = 5
     n_donor_draws: int = 500
     n_bootstrap: int = 2000
@@ -220,7 +236,7 @@ def _canonical(obj: Any) -> Any:
     """Normalise for hashing: tuples become lists, dict keys are sorted."""
     if isinstance(obj, dict):
         return {k: _canonical(obj[k]) for k in sorted(obj)}
-    if isinstance(obj, (list, tuple)):
+    if isinstance(obj, list | tuple):
         return [_canonical(v) for v in obj]
     if is_dataclass(obj) and not isinstance(obj, type):
         return _canonical(asdict(obj))
@@ -248,7 +264,7 @@ def detect_runtime() -> str:
 def git_commit() -> str | None:
     """The commit this code was run from, or None if unavailable.
 
-    Colab sessions clone the repository (D-015), so this links every cloud
+    Colab sessions clone the repository, so this links every cloud
     artifact back to a specific commit.
     """
     try:
@@ -262,10 +278,21 @@ def git_commit() -> str | None:
 
 
 def environment_record() -> dict[str, Any]:
-    """Environment provenance. Recorded, never hashed."""
+    """Environment provenance. Recorded, never hashed.
+
+    The Colab copy of the repository has no git history, so the code
+    fingerprint is what identifies the code there.
+    """
+    try:
+        from src.runtime import code_fingerprint
+
+        fingerprint = code_fingerprint()
+    except Exception:  # outside a project tree
+        fingerprint = None
     return {
         "runtime": detect_runtime(),
         "git_commit": git_commit(),
+        "code_fingerprint": fingerprint,
         "python": platform.python_version(),
         "platform": platform.platform(),
     }
@@ -283,7 +310,7 @@ def assert_same_capacity(configs: list[RunConfig]) -> None:
     if any(n is None for n in neural):
         raise ValueError("assert_same_capacity requires neural configs on all runs")
     first, *rest = neural
-    for other, cfg in zip(rest, configs[1:]):
+    for other, cfg in zip(rest, configs[1:], strict=False):
         if other != first:
             raise AssertionError(
                 "Neural configuration differs across conditions, which breaks "

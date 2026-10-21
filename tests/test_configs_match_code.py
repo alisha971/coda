@@ -62,6 +62,17 @@ def test_prosody_parameters_match_the_code(features):
     assert p["boundary_window_s"] == cfg.boundary_window_s == 0.300
 
 
+def test_every_praat_setting_is_pinned_identically(features):
+    """Each Praat parameter the tracks depend on is written in both places."""
+    p = features["prosody"]
+    cfg = FeatureConfig()
+    for key in ("frame_step_s", "min_voiced_frames", "max_candidates", "very_accurate",
+                "silence_threshold", "voicing_threshold", "octave_cost",
+                "octave_jump_cost", "voiced_unvoiced_cost", "intensity_subtract_mean",
+                "pitch_segment_source", "pitch_segment_merge_gap_s"):
+        assert p[key] == getattr(cfg, key), key
+
+
 def test_frozen_encoders_are_declared_frozen(features):
     assert features["text"]["frozen"] is True
     assert features["ssl"]["frozen"] is True
