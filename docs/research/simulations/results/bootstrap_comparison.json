@@ -1,0 +1,235 @@
+{
+ "protocol": "BOOTSTRAP_COMPARISON_PROTOCOL.md",
+ "seed": 20261016,
+ "n_reps": 1000,
+ "n_boot": 1000,
+ "scenarios": {
+  "B1": {
+   "settings": {
+    "n_sess": 50,
+    "per": 300,
+    "frac": 0.01,
+    "sd_sess": 0.02,
+    "unequal": false
+   },
+   "truth": 0.00781118880942025,
+   "methods": {
+    "percentile": {
+     "coverage": 0.927,
+     "exact_ci": [
+      0.9091,
+      0.9423
+     ],
+     "median_width": 0.011848190619851354
+    },
+    "bca": {
+     "coverage": 0.921,
+     "exact_ci": [
+      0.9025,
+      0.937
+     ],
+     "median_width": 0.01185843555373042
+    },
+    "bootstrap_t": {
+     "coverage": 0.938,
+     "exact_ci": [
+      0.9212,
+      0.9521
+     ],
+     "median_width": 0.012577219299846912
+    }
+   }
+  },
+  "B2": {
+   "settings": {
+    "n_sess": 50,
+    "per": 300,
+    "frac": 0.01,
+    "sd_sess": 0.05,
+    "unequal": false
+   },
+   "truth": 0.007593423316428233,
+   "methods": {
+    "percentile": {
+     "coverage": 0.934,
+     "exact_ci": [
+      0.9168,
+      0.9486
+     ],
+     "median_width": 0.02970791799731878
+    },
+    "bca": {
+     "coverage": 0.925,
+     "exact_ci": [
+      0.9069,
+      0.9406
+     ],
+     "median_width": 0.029845351472836033
+    },
+    "bootstrap_t": {
+     "coverage": 0.939,
+     "exact_ci": [
+      0.9223,
+      0.953
+     ],
+     "median_width": 0.03171957323367021
+    }
+   }
+  },
+  "B3": {
+   "settings": {
+    "n_sess": 25,
+    "per": 300,
+    "frac": 0.01,
+    "sd_sess": 0.02,
+    "unequal": false
+   },
+   "truth": 0.008773600741378812,
+   "methods": {
+    "percentile": {
+     "coverage": 0.918,
+     "exact_ci": [
+      0.8992,
+      0.9343
+     ],
+     "median_width": 0.01618080867632917
+    },
+    "bca": {
+     "coverage": 0.907,
+     "exact_ci": [
+      0.8873,
+      0.9243
+     ],
+     "median_width": 0.016298956886511645
+    },
+    "bootstrap_t": {
+     "coverage": 0.934,
+     "exact_ci": [
+      0.9168,
+      0.9486
+     ],
+     "median_width": 0.018337885017415005
+    }
+   }
+  },
+  "B4": {
+   "settings": {
+    "n_sess": 25,
+    "per": 300,
+    "frac": 0.01,
+    "sd_sess": 0.05,
+    "unequal": false
+   },
+   "truth": 0.008783675849405842,
+   "methods": {
+    "percentile": {
+     "coverage": 0.916,
+     "exact_ci": [
+      0.8971,
+      0.9324
+     ],
+     "median_width": 0.04051056557376413
+    },
+    "bca": {
+     "coverage": 0.912,
+     "exact_ci": [
+      0.8927,
+      0.9288
+     ],
+     "median_width": 0.040713506616356414
+    },
+    "bootstrap_t": {
+     "coverage": 0.942,
+     "exact_ci": [
+      0.9257,
+      0.9557
+     ],
+     "median_width": 0.04639558383533259
+    }
+   }
+  },
+  "B5": {
+   "settings": {
+    "n_sess": 50,
+    "per": 300,
+    "frac": 0.0,
+    "sd_sess": 0.02,
+    "unequal": false
+   },
+   "truth": -0.0011050291023082526,
+   "methods": {
+    "percentile": {
+     "coverage": 0.941,
+     "exact_ci": [
+      0.9246,
+      0.9548
+     ],
+     "median_width": 0.011889131894190948
+    },
+    "bca": {
+     "coverage": 0.936,
+     "exact_ci": [
+      0.919,
+      0.9504
+     ],
+     "median_width": 0.01192224787911239
+    },
+    "bootstrap_t": {
+     "coverage": 0.95,
+     "exact_ci": [
+      0.9346,
+      0.9627
+     ],
+     "median_width": 0.01263823253732659
+    }
+   }
+  },
+  "B6": {
+   "settings": {
+    "n_sess": 50,
+    "per": 300,
+    "frac": 0.01,
+    "sd_sess": 0.05,
+    "unequal": true
+   },
+   "truth": 0.009599590892117538,
+   "methods": {
+    "percentile": {
+     "coverage": 0.932,
+     "exact_ci": [
+      0.9146,
+      0.9468
+     ],
+     "median_width": 0.031980319281720085
+    },
+    "bca": {
+     "coverage": 0.911,
+     "exact_ci": [
+      0.8916,
+      0.9279
+     ],
+     "median_width": 0.032100494806908644
+    },
+    "bootstrap_t": {
+     "coverage": 0.94,
+     "exact_ci": [
+      0.9234,
+      0.9539
+     ],
+     "median_width": 0.03537357381567802
+    }
+   }
+  }
+ },
+ "selection": {
+  "eligible": [],
+  "worst_case_deviation": {
+   "percentile": 0.03399999999999992,
+   "bca": 0.04299999999999993,
+   "bootstrap_t": 0.015999999999999903
+  },
+  "recommended": "bootstrap_t",
+  "rule_applied": "no method eligible; highest worst-case coverage, reported as a limitation"
+ },
+ "seconds": 540.8726494312286
+}

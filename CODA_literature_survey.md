@@ -14,7 +14,7 @@ This survey positions a foundational empirical study, **Conversational Delivery 
 
 Before any shorthand is used, the components of that question are worth stating in ordinary research language.
 
-**What is being predicted.** The *delivery* of a conversational reply: how it was spoken rather than what was said. Delivery is described here by nine interpretable prosodic dimensions organised into four families — pitch level and span (mean log-F0, log-F0 range), pitch boundary behaviour (log-F0 slope over the final 300 ms), energy (mean intensity, intensity range), and timing (articulation rate, pause ratio, longest internal pause). These are continuous descriptors of a single turn, not categories, and not a learned embedding.
+**What is being predicted.** The *delivery* of a conversational reply: how it was spoken rather than what was said. Delivery is described here by eight interpretable prosodic dimensions organised into four families — pitch level and span (mean log-F0, log-F0 range), pitch boundary behaviour (log-F0 slope over the final 300 ms), energy (mean intensity, intensity range), and timing (articulation rate, pause ratio, longest internal pause). These are continuous descriptors of a single turn, not categories, and not a learned embedding.
 
 **Whose delivery is the target.** The person who replies. The prediction target is that person's delivery on the turn immediately following the partner's turn.
 
@@ -81,7 +81,7 @@ Conversational partners become more similar to each other over the course of an 
 
 **Levitan and Hirschberg (Interspeech 2011)** established much of the standard apparatus: a feature set covering pitch (mean, maximum, minimum), intensity (mean, maximum), speaking rate and voice quality measures, together with a **per-speaker z-score norming procedure** applied feature by feature, and a distinction between several measurement targets — proximity, convergence and synchrony — that are conceptually separate and need not co-occur. Gravano and colleagues extended measurement to categorical intonational (ToBI-based) descriptions. Reichel's *Entrainment profiles* work (Speech Communication, 2018) extended the feature space to register, pitch-accent shape and rhythmic descriptors derived from a superpositional intonation stylisation.
 
-**Directly relevant consequence for the present study.** The interpretable nine-dimensional delivery description used here, and the per-speaker standardisation applied to it, are drawn from this tradition and are cited to it. They are not presented as design contributions. Their use is a decision to measure delivery in the terms the relevant scientific literature already uses, which makes results comparable and makes the dimension-level analysis interpretable to the audience best placed to evaluate it.
+**Directly relevant consequence for the present study.** The interpretable eight-dimensional delivery description used here, and the per-speaker standardisation applied to it, are drawn from this tradition and are cited to it. They are not presented as design contributions. Their use is a decision to measure delivery in the terms the relevant scientific literature already uses, which makes results comparable and makes the dimension-level analysis interpretable to the audience best placed to evaluate it.
 
 ## 3.2 The sham-conversation control
 
@@ -244,7 +244,7 @@ Three specific claims follow, and no more:
 
 Explicitly **not** claimed: discovery of the phenomenon; a novel method; a novel architecture; novelty of the sham/matched-pairing control; novelty of the prosodic feature families or of per-speaker normalisation. The last two are cited to Levitan and Hirschberg (2011) and the first to Nasir et al. (2018) and its predecessors.
 
-Contribution class, stated honestly: **a measurement study that converts an assumption the field already acts on into a quantity with an interval, together with the first function-conditional version of that quantity.** Modest, defensible, and appropriate as a foundational study for a larger programme on situationally conditioned expressive speech.
+Contribution class, stated honestly: **a measurement study that converts an assumption the field already acts on into a quantity with an interval, together with the first function-conditional version of that quantity.** Modest, defensible, and appropriate as a foundational empirical study.
 
 ---
 
@@ -274,10 +274,8 @@ The position of the present study in this literature is therefore **incremental 
 
 ---
 
-# Appendix — points flagged for verification, not incorporated
+---
 
-Two matters surfaced by this survey bear on implementation and are recorded here rather than acted on; neither alters the study design, and both should be checked against primary sources before data collection.
+# 13. Note on corpus style
 
-**A. Word-level timing in the primary corpus.** The CANDOR corpus (Reece, Cooney, Bull, Chung, Dawson, Fitzpatrick, Glazer, Knox, Liebscher and Marin, *Science Advances* 9(13), 2023) comprises 1,656 unscripted dyadic conversations recorded over online video chat in 2020, with 1,456 unique participants, more than 850 hours of audio, and per-speaker media available through registered download. At least one subsequent paper working with the corpus reports that the three turn-segmentation schemes released with it (Audiophile, Cliffhanger, Backbiter) do **not** carry word-level timestamps, and that word-level transcripts were produced separately by re-running automatic speech recognition. If accurate, any pipeline stage that assumes word-level timing from the released transcripts will need a forced-alignment or re-transcription step. This is an implementation matter to be resolved and documented, not a design change.
-
-**B. Corpus style and the interpretation of a null.** Much of the conversational-synthesis literature against which this study positions itself works on read or acted dialogue, whereas the coordination phenomenon is documented primarily on spontaneous dyads. Adaptation is generally expected to be weaker in read speech, which means results obtained on spontaneous conversation and results obtained on read corpora are not directly comparable in magnitude. This affects how cross-literature comparisons should be worded in any write-up, and is noted here so that magnitude comparisons across corpora are avoided rather than made cautiously.
+Much of the conversational-synthesis literature against which this study positions itself works on read or acted dialogue, whereas the coordination phenomenon is documented mainly on spontaneous dyads. Adaptation is generally expected to be weaker in read speech, so results obtained on spontaneous conversation and results obtained on read corpora are not directly comparable in magnitude. Magnitude comparisons across corpora are therefore avoided in the write-up.

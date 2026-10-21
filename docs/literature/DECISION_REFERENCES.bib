@@ -1,0 +1,192 @@
+% References for the decision-resolution review (2026-10-16).
+% `checked` records what was actually accessed:
+%   full-text-section : the relevant section of the full text was read
+%   abstract          : abstract or publisher/proceedings record read
+%   metadata          : bibliographic record only (title, authors, venue, year, DOI)
+%   secondary         : the specific claim is known only from a secondary source (named in the note)
+% Entries already in REFERENCE_LIBRARY.bib are cited by key there and not repeated,
+% except where this review checked something new.
+
+@inproceedings{levitan2011measuring,
+  author    = {Levitan, Rivka and Hirschberg, Julia},
+  title     = {Measuring acoustic-prosodic entrainment with respect to multiple levels and dimensions},
+  booktitle = {Proceedings of Interspeech 2011},
+  year      = {2011},
+  url       = {https://www.cs.columbia.edu/~julia/papers/levitanetal11-interspeech.pdf},
+  checked   = {full-text-section: methods (sections 3-4) and results tables 1-5},
+  note      = {Columbia Games Corpus, 12 sessions, 13 speakers. Features z-scored by GENDER, not per speaker. Turn-level synchrony = Pearson r between the final IPU of a turn and the initial IPU of the next, pooled over sessions: intensity max 0.50, intensity mean 0.47, pitch mean 0.28, jitter 0.23, NHR 0.23, pitch max 0.18, shimmer 0.16, speaking rate 0.15 (Table 4). Supports: MD-19 (G2).}
+}
+
+@article{kruyt2023measuring,
+  author  = {Kruyt, Joanna and de Jong, Dorina and D'Ausilio, Alessandro and Be{\v{n}}u{\v{s}}, {\v{S}}tefan},
+  title   = {Measuring Prosodic Entrainment in Conversation: A Review and Comparison of Different Methods},
+  journal = {Journal of Speech, Language, and Hearing Research},
+  volume  = {66},
+  number  = {11},
+  pages   = {4280--4314},
+  year    = {2023},
+  doi     = {10.1044/2023_JSLHR-23-00094},
+  checked = {abstract (via search record); the full-text PDF could not be retrieved},
+  note    = {Twelve entrainment methods applied to one corpus give divergent results. Supports: MD-19 (no single literature effect size exists to translate).}
+}
+
+@article{weise2019individual,
+  author  = {Weise, Andreas and Levitan, Sarah Ita and Hirschberg, Julia and Levitan, Rivka},
+  title   = {Individual differences in acoustic-prosodic entrainment in spoken dialogue},
+  journal = {Speech Communication},
+  volume  = {115},
+  pages   = {78--87},
+  year    = {2019},
+  url     = {https://par.nsf.gov/servlets/purl/10130898},
+  checked = {abstract},
+  note    = {Wide between-speaker variation in strength and sign of local entrainment. Supports: MD-19 (heterogeneity).}
+}
+
+@article{lakens2018equivalence,
+  author  = {Lakens, Dani{\"e}l and Scheel, Anne M. and Isager, Peder M.},
+  title   = {Equivalence Testing for Psychological Research: A Tutorial},
+  journal = {Advances in Methods and Practices in Psychological Science},
+  volume  = {1},
+  number  = {2},
+  pages   = {259--269},
+  year    = {2018},
+  doi     = {10.1177/2515245918770963},
+  checked = {abstract},
+  note    = {Smallest effect size of interest (SESOI) specified in advance; ways to justify it. Supports: MD-19 alternative.}
+}
+
+@article{bradley1978robustness,
+  author  = {Bradley, James V.},
+  title   = {Robustness?},
+  journal = {British Journal of Mathematical and Statistical Psychology},
+  volume  = {31},
+  pages   = {144--152},
+  year    = {1978},
+  checked = {metadata; the liberal criterion [0.5 alpha, 1.5 alpha] known from secondary sources only (SimDesign documentation; a figure note in a PMC article)},
+  note    = {Supports: MD-17 (G1 tolerance) as a published convention.}
+}
+
+@article{morris2019simulation,
+  author  = {Morris, Tim P. and White, Ian R. and Crowther, Michael J.},
+  title   = {Using simulation studies to evaluate statistical methods},
+  journal = {Statistics in Medicine},
+  volume  = {38},
+  number  = {11},
+  pages   = {2074--2102},
+  year    = {2019},
+  doi     = {10.1002/sim.8086},
+  checked = {abstract and record; coverage-specific formulas not read},
+  note    = {Monte-Carlo standard errors for simulation performance measures. Supports: MD-11, MD-17 (replicate counts).}
+}
+
+@article{lorenzoseva2006tucker,
+  author  = {Lorenzo-Seva, Urbano and ten Berge, Jos M. F.},
+  title   = {Tucker's congruence coefficient as a meaningful index of factor similarity},
+  journal = {Methodology},
+  volume  = {2},
+  number  = {2},
+  pages   = {57--64},
+  year    = {2006},
+  checked = {secondary: thresholds .85-.94 fair, >= .95 equal, quoted by R package documentation (psych, fungible) and Lovik et al. 2020},
+  note    = {Supports: MD-15 (a published convention for loading-vector similarity). Derived from expert ratings of factor solutions, not from conversational coupling.}
+}
+
+@article{meinshausen2010stability,
+  author  = {Meinshausen, Nicolai and B{\"u}hlmann, Peter},
+  title   = {Stability selection},
+  journal = {Journal of the Royal Statistical Society: Series B},
+  volume  = {72},
+  number  = {4},
+  pages   = {417--473},
+  year    = {2010},
+  doi     = {10.1111/j.1467-9868.2010.00740.x},
+  checked = {metadata},
+  note    = {Resampling-based selection with a frequency threshold. Supports: MD-15 (precedent for resampling frequencies; its thresholds are for variable selection, not transferable).}
+}
+
+@inproceedings{dejong2013choosing,
+  author    = {de Jong, Nivja H. and Bosker, Hans Rutger},
+  title     = {Choosing a threshold for silent pauses to measure second language fluency},
+  booktitle = {Proceedings of the 6th Workshop on Disfluency in Spontaneous Speech (DiSS 2013)},
+  pages     = {17--20},
+  year      = {2013},
+  url       = {https://www.mpi.nl/publications/item1900232/choosing-threshold-silent-pauses-measure-second-language-fluency},
+  checked   = {abstract; the recommended value (commonly cited as 250 ms) known from secondary sources only},
+  note      = {Published pause thresholds range 100-1000 ms. Supports: MD-04 (pause threshold).}
+}
+
+@article{stolcke2000dialogue,
+  author    = {Stolcke, Andreas and Ries, Klaus and Coccaro, Noah and Shriberg, Elizabeth and Bates, Rebecca and Jurafsky, Daniel and Taylor, Paul and Martin, Rachel and Van Ess-Dykema, Carol and Meteer, Marie},
+  title     = {Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech},
+  journal   = {Computational Linguistics},
+  volume    = {26},
+  number    = {3},
+  year      = {2000},
+  url       = {https://arxiv.org/abs/cs/0006023},
+  checked   = {abstract: 71% tagging accuracy from transcripts vs 84% human agreement on Switchboard; SWBD-DAMSL kappa .80 known from a related Jurafsky et al. paper (secondary)},
+  note      = {Supports: MD-31 (dialogue-act categories and achievable agreement in conversational speech).}
+}
+
+@article{gilardi2023chatgpt,
+  author  = {Gilardi, Fabrizio and Alizadeh, Meysam and Kubli, Ma{\"e}l},
+  title   = {ChatGPT outperforms crowd workers for text-annotation tasks},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {120},
+  number  = {30},
+  pages   = {e2305016120},
+  year    = {2023},
+  doi     = {10.1073/pnas.2305016120},
+  checked = {abstract},
+  note    = {Supports: MD-31 (LLM labelling can match or exceed crowd agreement on some tasks; not dialogue acts).}
+}
+
+@article{chen2024chatgpt,
+  author  = {Chen, Lingjiao and Zaharia, Matei and Zou, James},
+  title   = {How Is ChatGPT's Behavior Changing Over Time?},
+  journal = {Harvard Data Science Review},
+  volume  = {6},
+  number  = {2},
+  year    = {2024},
+  doi     = {10.1162/99608f92.5317da47},
+  checked = {abstract},
+  note    = {Behaviour of hosted LLM versions changes over months. Supports: MD-31 (prefer pinned open weights over hosted APIs).}
+}
+
+@article{feinstein1990high,
+  author  = {Feinstein, Alvan R. and Cicchetti, Domenic V.},
+  title   = {High agreement but low kappa: I. The problems of two paradoxes},
+  journal = {Journal of Clinical Epidemiology},
+  volume  = {43},
+  number  = {6},
+  pages   = {543--549},
+  year    = {1990},
+  checked = {secondary: the two paradoxes as summarised in BMC Med Res Methodol 2014 and other sources; DOI not verified},
+  note    = {Kappa depends on prevalence. Supports: MD-31/MD-32 (rare categories in 300 random pairs).}
+}
+
+@misc{qwen2024qwen25,
+  author        = {{Qwen Team} and Yang, An and others},
+  title         = {Qwen2.5 Technical Report},
+  year          = {2024},
+  eprint        = {2412.15115},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2412.15115},
+  checked       = {arXiv abstract page; Hugging Face model card for Qwen/Qwen2.5-7B-Instruct (licence apache-2.0, 7.61B parameters, transformers >= 4.37 required)},
+  note          = {Supports: MD-31 (a candidate open-weights classifier). No evaluation on dialogue acts was checked.}
+}
+
+@misc{seamless_card,
+  author       = {{Meta AI}},
+  title        = {Seamless Interaction dataset card},
+  howpublished = {\url{https://huggingface.co/datasets/facebook/seamless-interaction}},
+  checked      = {dataset card read 2026-10-16},
+  note         = {States: audio "Denoised audio with separate channels", WAV 48 kHz 16-bit, "Speaker-bleed denoised audio"; about 10% of interactions with timestamp issues; CC BY-NC 4.0. Does not mention echo suppression or peak normalisation. Supports: MD-01.}
+}
+
+@misc{cmudict,
+  author       = {{Carnegie Mellon University}},
+  title        = {The CMU Pronouncing Dictionary (cmudict Python package 1.0.32)},
+  howpublished = {\url{https://github.com/cmusphinx/cmudict}},
+  checked      = {installed in an isolated environment and used in a synthetic comparison},
+  note         = {Supports: MD-03.}
+}

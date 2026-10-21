@@ -1,6 +1,6 @@
 # CODA — research overview
 
-**Conversational Delivery Adaptation: a foundational empirical study for Situational Style Cloning.**
+**Conversational Delivery Adaptation: a controlled measurement of how a partner's delivery predicts a reply's delivery.**
 
 This document is the research-facing single source of truth for what CODA is scientifically. It explains the question, the design, and why the major components exist. It is not an implementation plan, a schedule, or a status report.
 
@@ -10,9 +10,11 @@ This document is the research-facing single source of truth for what CODA is sci
 
 CODA measures whether, in spontaneous dyadic conversation, the way a partner speaks predicts the way a reply is delivered, once the reply's own words and the partner's transcript are already accounted for.
 
-**Relationship to Situational Style Cloning (SSC).** SSC is a larger research programme that treats expressive conversational delivery as a *situation-conditioned policy* rather than one global speaking style per person. That design choice rests on an empirical premise nobody has tested directly: that the relationship between conversational context and delivery is stable, generalises to unseen speakers, and varies with the situation. CODA tests that premise. It does not build SSC, and a positive result does not prove SSC will work — it establishes whether attempting it is warranted.
+**Scope of the claim.** CODA measures a relationship in recorded conversation. It reports how much of a reply's delivery can be predicted from the partner's delivery and whether that depends on the conversational function. It does not build or evaluate any speech system.
 
 **Scope boundary.** CODA generates no audio. It is a measurement study.
+
+**Data.** The Seamless Interaction dataset, naturalistic partition (Agrawal et al., 2025; CC BY-NC 4.0), read at a pinned revision. Each session is one pair of people, strangers to each other, recorded in person for about an hour and released as a set of prompted but unscripted conversations of a few minutes each. Every participant has a separate microphone, a word-timed transcript and voice-activity segments, so turns are built without speaker diarisation and neither the target nor the predictor inherits diarisation error. The sample is 250 sessions, one per speaker, drawn at random under a recorded seed from those passing channel quality control; a 40-session pilot is used for development and for the first gate. Audio is processed and discarded: it is measured and deleted, and only measurements are kept. The design's *conversation* is a session. Turn pairs, turn distance and the within-dyad control are formed inside a single conversation interaction, because the time between interactions was not released. The full mapping, and the reasons for the change from the corpus originally planned, are in `PREREGISTRATION.md`. **Why not CANDOR.** The specification named the CANDOR corpus (Reece et al., 2023). CANDOR is released only through an access process: an application to BetterUp, and for the TalkBank copy, registration and an emailed request after BetterUp's approval. Its authors note that its recordings carry a risk of personal identification. Access was not requested; the study uses an openly downloadable corpus with the properties the design needs. CANDOR was not refused, and no CANDOR data was used.
 
 ---
 
@@ -51,7 +53,7 @@ So the field knows the effect exists and acts on it, but has not reported how mu
 
 **H2 — secondary, confirmatory.** The relationship is *structured*: there are reproducible partner-dimension to reply-dimension directions rather than diffuse association. "Reproducible" is operationalised as a battery, not a single number — reduced-rank structure, stability of loadings across dyad-level bootstrap resamples, stability across held-out-speaker folds, concentration of explained covariance, comparison against a random-rotation null, and consistency with what the learned representation encodes. The null is that no direction survives the bootstrap, the speaker-fold and the rotation null simultaneously.
 
-**H3 — the SSC bridge.** The coupling is function-dependent: its magnitude, its dimensional structure, or both differ systematically across conversational functions.
+**H3 — function dependence.** The coupling is function-dependent: its magnitude, its dimensional structure, or both differ systematically across conversational functions.
 
 **H4 — competing explanation, mandatory.** The relationship reflects local adaptation rather than merely shared conversation-level state: it weakens when the partner turn is replaced by a distant turn from the same speaker in the same conversation.
 
@@ -246,7 +248,7 @@ Leakage prevention is part of the experimental design, not a cleanup step. Every
 
 ## 13. Situation analysis
 
-This is the component that speaks directly to SSC. Its premise is that expressive delivery is situation-conditioned rather than one global style. The minimal test is not "can a policy be learned" but "does the context-to-delivery relationship itself change with the situation?" If it does not, a situation-conditioned policy is over-parameterised for the phenomenon and SSC's central design choice is unmotivated.
+This component asks whether the relationship between the partner's delivery and the reply's delivery is the same across conversational situations or changes with them. If it does not change, one global relationship describes the data. If it does, the relationship has to be described for each conversational function.
 
 **Function categories**, assigned to the pair: question to answer; assessment or opinion to response; narrative or inform to continuation; backchannel-adjacent; and other, which is excluded from analysis rather than modelled.
 
@@ -254,8 +256,8 @@ This is the component that speaks directly to SSC. Its premise is that expressiv
 
 **Two forms of dependence are distinguished**, and they imply different things:
 
-- **Magnitude dependence** — the coupling is stronger in some functions. A policy should weight context differently by situation.
-- **Structural dependence** — the coupling loads on *different dimensions* in different functions. A policy needs a situation-conditioned mapping, not merely a situation-conditioned gain. This is the stronger finding, and the reduced-rank factors are what can show it.
+- **Magnitude dependence** — the coupling is stronger in some functions.
+- **Structural dependence** — the coupling loads on *different dimensions* in different functions. The mapping from partner delivery to reply delivery then differs by function, and not only its strength. This is the stronger finding, and the reduced-rank factors are what can show it.
 
 The interaction is tested directly as a term in the mixed-effects model, not by eyeballing subgroup estimates. Any neural view of function-dependent structure is exploratory and labelled as such.
 
@@ -281,11 +283,10 @@ The gates cover corpus viability, null calibration, detectability, the core test
 
 ## 15. Scope boundaries
 
-**Not in CODA, by design:** any speech generation or text-to-speech; style cloning or transfer; style and identity disentanglement; a retrieval-based or language-model-based style policy; an end-to-end speech agent; a human appropriateness benchmark or listening test; a complete situation-to-style policy learner; delivery ranking or any downstream usefulness task; and causal claims of any kind.
+**Not in CODA, by design:** any speech generation or text-to-speech; voice or style transfer; an end-to-end speech agent; a human appropriateness benchmark or listening test; delivery ranking or any downstream usefulness task; and causal claims of any kind.
 
 **One architecture.** Separate models per self-supervised family, multiple architectures as independent experiments, size sweeps and architecture search are all explicitly rejected. There is no leaderboard and no dashboard of model comparisons.
 
-**Relationship to SSC.** CODA is the measurement that says whether the next stage is worth building. That stage — learning a mapping from situational context to a delivery representation, conditioning expressive synthesis on it, and evaluating whether listeners judge the result appropriate — needs style and identity separation, multi-speaker data and a human evaluation protocol, all deliberately outside CODA.
 
 ---
 
@@ -293,13 +294,13 @@ The gates cover corpus viability, null calibration, detectability, the core test
 
 Four outcomes are committed to in advance. No fifth is created after the fact.
 
-**1. Coupling present, surviving both controls, structured, and function-dependent.** Reply delivery is conditionally predictive from partner delivery beyond lexical context on unseen speakers; the relationship concentrates in identifiable dimensions; and it differs systematically by conversational function. This supports modelling expressive conversational speech as a situation-conditioned delivery policy.
+**1. Coupling present, surviving both controls, structured, and function-dependent.** Reply delivery is conditionally predictive from partner delivery beyond lexical context on unseen speakers; the relationship concentrates in identifiable dimensions; and it differs systematically by conversational function. This supports describing conversational delivery as depending on the situation.
 
-**2. Coupling present, not function-dependent.** Reliable contextual coupling that does not vary detectably with function, with the per-stratum detectability floor stated. This supports context-conditioned delivery modelling but provides no evidence that situation conditioning is necessary. SSC's situation-conditioning assumption is then untested rather than supported.
+**2. Coupling present, not function-dependent.** Reliable contextual coupling that does not vary detectably with function, with the per-stratum detectability floor stated. This supports context-conditioned delivery modelling but provides no evidence that conditioning on the situation is necessary, which then stays untested.
 
 **3. Coupling present but equivalent under the within-dyad control.** The relationship reflects conversation-level style alignment rather than turn-level adaptation. For agent design this favours a running conversation-style estimate over last-turn conditioning.
 
-**4. Calibrated null.** With a stated detectable-effect floor on the achieved sample and unseen speakers, delivery-to-delivery coupling is weak or not reliably present under controlled evaluation. This places limits on the premise that conversational context provides a stable basis for a general delivery policy.
+**4. Calibrated null.** With a stated detectable-effect floor on the achieved sample and unseen speakers, delivery-to-delivery coupling is weak or not reliably present under controlled evaluation. This places limits on the premise that conversational context provides a stable basis for predicting delivery.
 
 **Where the neural layer enters.** It can strengthen or weaken confidence in the representation-level result *within* any of these four. It cannot create a fifth. A neural positive under a statistical null is reported as representation-dependence — the relationship is not recoverable from pooled prosodic scalars but is recoverable from a learned representation at this sample size — which qualifies outcome 4 rather than replacing it, and is exactly the kind of finding the two-layer design exists to catch.
 
