@@ -1,0 +1,50 @@
+{
+  "stage": "pilot",
+  "created_utc": "2026-10-21T16:42:24+00:00",
+  "code_fingerprint": "51ce4acb032a1d84",
+  "hardware": {
+    "runtime": "colab",
+    "python": "3.13.16",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "cpu_count": 2,
+    "ram_total_gb": 13.605830656,
+    "ram_available_gb": 11.039789056,
+    "gpu": null,
+    "project_disk_total_gb": 16.10612736,
+    "project_disk_free_gb": 13.147889664,
+    "scratch_disk_free_gb": 93.200326656
+  },
+  "packages": {
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "pyarrow": "23.0.1",
+    "scipy": "1.16.3",
+    "praat-parselmouth": "0.4.7",
+    "soundfile": "0.12.1",
+    "requests": "2.32.4",
+    "pyyaml": "6.0.3",
+    "matplotlib": "3.10.0",
+    "scikit-learn": "1.6.1",
+    "statsmodels": "0.15.0",
+    "torch": "2.11.0+cpu",
+    "transformers": "4.57.6",
+    "sentence-transformers": "3.0.1"
+  },
+  "argv": [
+    "/usr/local/lib/python3.13/dist-packages/colab_kernel_launcher.py"
+  ],
+  "summary": {
+    "sessions": 40.0,
+    "speakers": 80.0,
+    "interactions (usable)": 447.0,
+    "turns": 19680.0,
+    "candidate pairs": 19228.0,
+    "median dominant talk share": 0.643,
+    "median floor transfer offset (s)": 0.042,
+    "replies starting in overlap": 0.433,
+    "replies of 1\u20132 words": 0.465,
+    "partner turns ending in '?'": 0.059,
+    "between-speaker share, median F0": 0.962,
+    "median within-speaker file loudness range (dB)": 4.09
+  }
+}

@@ -1,0 +1,13 @@
+,pilot
+sessions,40.0
+speakers,80.0
+interactions (usable),447.0
+turns,19680.0
+candidate pairs,19228.0
+median dominant talk share,0.643
+median floor transfer offset (s),0.042
+replies starting in overlap,0.433
+replies of 1–2 words,0.465
+partner turns ending in '?',0.059
+"between-speaker share, median F0",0.962
+median within-speaker file loudness range (dB),4.09

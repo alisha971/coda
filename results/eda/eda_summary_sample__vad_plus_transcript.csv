@@ -1,0 +1,13 @@
+,sample
+sessions,250.0
+speakers,500.0
+interactions (usable),2822.0
+turns,108837.0
+candidate pairs,105993.0
+median dominant talk share,0.642
+median floor transfer offset (s),0.04
+replies starting in overlap,0.433
+replies of 1–2 words,0.44
+partner turns ending in '?',0.055
+"between-speaker share, median F0",0.954
+median within-speaker file loudness range (dB),4.01
