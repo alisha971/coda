@@ -1,0 +1,62 @@
+{
+  "stage": "sample",
+  "created_utc": "2026-10-24T12:31:11+00:00",
+  "code_fingerprint": "e1a10dc2c7145664",
+  "hardware": {
+    "runtime": "colab",
+    "python": "3.13.16",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "cpu_count": 2,
+    "ram_total_gb": 13.605830656,
+    "ram_available_gb": 11.98532608,
+    "gpu": null,
+    "project_disk_total_gb": 16.10612736,
+    "project_disk_free_gb": 11.851476992,
+    "scratch_disk_free_gb": 92.34796544
+  },
+  "packages": {
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "pyarrow": "23.0.1",
+    "scipy": "1.16.3",
+    "praat-parselmouth": "0.4.7",
+    "soundfile": "0.12.1",
+    "requests": "2.32.4",
+    "pyyaml": "6.0.3",
+    "matplotlib": "3.10.0",
+    "scikit-learn": "1.6.1",
+    "statsmodels": "0.15.0",
+    "torch": "2.11.0+cpu",
+    "transformers": "4.57.6",
+    "sentence-transformers": "3.0.1"
+  },
+  "argv": [
+    "/usr/local/lib/python3.13/dist-packages/colab_kernel_launcher.py"
+  ],
+  "g0": {
+    "channels": 5764,
+    "channel_pass_rate": 0.9715475364330326,
+    "feature_droppage": 0.057807876794148456,
+    "min_pass_rate": 0.8,
+    "max_droppage": 0.15,
+    "passed": true,
+    "on_failure": "switch the primary corpus to AMI two-party stretches",
+    "complete": true,
+    "pitch_segment_source": "vad_plus_transcript",
+    "stage": "sample",
+    "sessions": 250,
+    "pair_loss": 0.10903550234449445,
+    "droppage_definition": "share of candidate-pair turns with < 10 voiced frames"
+  },
+  "funnel": {
+    "selected sessions": 250,
+    "sessions with a usable interaction": 250,
+    "interactions": 2882,
+    "interactions with both channels usable": 2778,
+    "turns (embedded set aside)": 108837,
+    "candidate pairs": 105993,
+    "candidate pairs in usable interactions": 104941,
+    "pairs with both turns measurable": 93498,
+    "... and an N2 donor in the interaction": 89112
+  }
+}

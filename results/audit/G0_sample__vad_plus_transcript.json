@@ -1,0 +1,15 @@
+{
+  "channels": 5764,
+  "channel_pass_rate": 0.9715475364330326,
+  "feature_droppage": 0.057807876794148456,
+  "min_pass_rate": 0.8,
+  "max_droppage": 0.15,
+  "passed": true,
+  "on_failure": "switch the primary corpus to AMI two-party stretches",
+  "complete": true,
+  "pitch_segment_source": "vad_plus_transcript",
+  "stage": "sample",
+  "sessions": 250,
+  "pair_loss": 0.10903550234449445,
+  "droppage_definition": "share of candidate-pair turns with < 10 voiced frames"
+}

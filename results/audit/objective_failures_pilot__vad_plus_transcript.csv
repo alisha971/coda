@@ -1,0 +1,9 @@
+failure,channels
+none,886
+missing,0
+unreadable,0
+wrong_sample_rate,0
+not_mono,0
+duration_mismatch,0
+no_vad_speech,30
+no_timed_words,0
