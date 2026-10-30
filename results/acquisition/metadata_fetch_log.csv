@@ -1,0 +1,5 @@
+file,url,path,bytes,sha256,status,attempts
+filelist.csv,https://raw.githubusercontent.com/facebookresearch/seamless_interaction/b61b0324461f05221659cc38a1130f854fdd2855/assets/filelist.csv,data/raw/metadata/filelist.csv,7334574,e8ecdfd690286502193489b638208b70d1834dc3e25e2145050618e14dd568dc,exists,0
+interactions.csv,https://huggingface.co/datasets/facebook/seamless-interaction/resolve/ba9e212ab927ba05bfd80778f53bf9de69f65e3b/interactions.csv,data/raw/metadata/interactions.csv,1471780,af692f173b346fb3c0985ecce64eb0f6602d7958d3fdd9139bc0a65971485318,exists,0
+participants.csv,https://huggingface.co/datasets/facebook/seamless-interaction/resolve/ba9e212ab927ba05bfd80778f53bf9de69f65e3b/participants.csv,data/raw/metadata/participants.csv,311062,99c418c97e768092e128b96978bf8656b1e599c1c4950cd93b12744d8b11a38d,exists,0
+relationships.csv,https://huggingface.co/datasets/facebook/seamless-interaction/resolve/ba9e212ab927ba05bfd80778f53bf9de69f65e3b/relationships.csv,data/raw/metadata/relationships.csv,141286,aa5b272864a55cbddb51da1e5b5467c2f1353fdf897fed78ef7e6684310a6841,exists,0
