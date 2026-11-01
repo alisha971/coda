@@ -1,0 +1,40 @@
+{
+  "scheme": "speaker_disjoint",
+  "seed": 20260912,
+  "sessions": {
+    "train": 25,
+    "val": 8,
+    "test": 7
+  },
+  "speakers": {
+    "train": 50,
+    "val": 16,
+    "test": 14
+  },
+  "groups_with_more_than_one_session": 1,
+  "speakers_shared_across_partitions": 0,
+  "manifest_hash": "15d3fd20bda9",
+  "near_duplicate_links": [],
+  "identity_candidate_links": [
+    [
+      "V02_S3261",
+      "V02_S3302",
+      "1.0"
+    ],
+    [
+      "V02_S3261",
+      "V02_S3335",
+      "1.0"
+    ],
+    [
+      "V02_S3261",
+      "V02_S3414",
+      "1.0"
+    ],
+    [
+      "V02_S3261",
+      "V02_S3437",
+      "1.0"
+    ]
+  ]
+}

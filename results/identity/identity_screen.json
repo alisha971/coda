@@ -1,0 +1,89 @@
+{
+ "protocol": "docs/audit/IDENTITY_AUDIT_PROTOCOL.md",
+ "participants_screened": 500,
+ "sessions_screened": 250,
+ "l2_null": {
+  "observed": 51,
+  "null_mean": 0.049,
+  "null_q95": 0.0,
+  "null_q99": 1.0,
+  "p_null_ge_observed": 0.0,
+  "disclosed_participants": 291,
+  "n_perm": 1000,
+  "seed": 20261016
+ },
+ "links_by_rule": {
+  "L2_trait_profile": 51
+ },
+ "seconds": 45.6,
+ "identity_groups": {
+  "multi_session_group_sizes": [
+   14,
+   2,
+   2,
+   2,
+   2
+  ]
+ },
+ "split_preview": {
+  "id_only": {
+   "partition_sessions": {
+    "train": 175,
+    "test": 50,
+    "val": 25
+   },
+   "vendor_by_partition": {
+    "00": {
+     "test": 5,
+     "train": 22,
+     "val": 3
+    },
+    "01": {
+     "test": 3,
+     "train": 25,
+     "val": 1
+    },
+    "02": {
+     "test": 11,
+     "train": 36,
+     "val": 10
+    },
+    "03": {
+     "test": 31,
+     "train": 92,
+     "val": 11
+    }
+   }
+  },
+  "with_identity_links": {
+   "partition_sessions": {
+    "train": 175,
+    "test": 50,
+    "val": 25
+   },
+   "vendor_by_partition": {
+    "00": {
+     "test": 8,
+     "train": 19,
+     "val": 3
+    },
+    "01": {
+     "test": 9,
+     "train": 17,
+     "val": 3
+    },
+    "02": {
+     "test": 7,
+     "train": 44,
+     "val": 6
+    },
+    "03": {
+     "test": 26,
+     "train": 95,
+     "val": 13
+    }
+   }
+  }
+ },
+ "note": "preview without near-duplicate transcript links (transcripts not on this machine)"
+}
