@@ -1,0 +1,50 @@
+{
+  "data_kind": "sample",
+  "run_key": "719af2298ec13413",
+  "content": {
+    "gate": "G1",
+    "status": "FAIL",
+    "criterion": "one-sided 95% upper bound of the \u03b2 = 0 rejection rate \u2264 1.5\u03b1, N1 and N2",
+    "source": "Prereg \u00a710",
+    "evidence": {
+      "alpha": 0.05,
+      "rates": {
+        "N1": {
+          "rate": 0.088,
+          "rejections": 176,
+          "replicates": 2000,
+          "ci95": [
+            0.07594517775871472,
+            0.10127788287047298
+          ]
+        },
+        "N2": {
+          "rate": 0.0935,
+          "rejections": 187,
+          "replicates": 2000,
+          "ci95": [
+            0.0810937947727658,
+            0.10711211374592862
+          ]
+        }
+      },
+      "passes": {
+        "N1": false,
+        "N2": false
+      },
+      "acceptance": "bradley_liberal_upper_bound",
+      "provisional_outcome": "FAIL",
+      "upper_bound_95": {
+        "N1": 0.09912350847324893,
+        "N2": 0.104904914684991
+      },
+      "liberal_bound": 0.07500000000000001,
+      "mc_test_exact_size": 0.05189620758483034,
+      "n_draws": 500
+    },
+    "settings": [
+      "g1_rule"
+    ],
+    "consequence": "stop and debug; nothing downstream runs"
+  }
+}

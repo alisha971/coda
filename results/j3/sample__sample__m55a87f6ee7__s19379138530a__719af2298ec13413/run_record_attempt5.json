@@ -1,0 +1,290 @@
+{
+  "run_key": "719af2298ec13413",
+  "directory": "sample__sample__m55a87f6ee7__s19379138530a__719af2298ec13413",
+  "config": {
+    "experiment": "j3",
+    "data_kind": "sample",
+    "stage": "sample",
+    "measurement_signature": "55a87f6ee7",
+    "split_hash": "19379138530a",
+    "ridge": {
+      "lambda_grid": [
+        1e-05,
+        3e-05,
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1.0,
+        3.0,
+        10.0,
+        30.0,
+        100.0
+      ],
+      "rank_grid": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "nested_cv_folds": 5,
+      "n_donor_draws": 500,
+      "n_bootstrap": 2000
+    },
+    "n_draws": 500,
+    "targets": [
+      0.002,
+      0.0025,
+      0.005,
+      0.01,
+      0.02,
+      0.03,
+      0.05
+    ],
+    "seed": 20260912,
+    "replicates": 50,
+    "replicates_beta0": 2000,
+    "couplings": [
+      "identity_matched_dimensions",
+      "cross_dimension_variant"
+    ],
+    "chunk_replicates": 250,
+    "residual_resampling": "session_block_ordered",
+    "settings": {
+      "overlap_handling": "exclude_overlap_energy",
+      "pitch_range": "fixed",
+      "syllable_method": "dictionary",
+      "turn_measurement": {
+        "intensity_averaging": "energy",
+        "intensity_range": "p95_p5",
+        "boundary_min_voiced_frames": 10
+      },
+      "min_turns_for_speaker_stats": 10,
+      "variance_model": {
+        "target": "squared_out_of_fold_residuals",
+        "floor_fraction_of_mean_squared_residual": 0.01
+      },
+      "bootstrap": {
+        "resamples": 2000,
+        "unit": "session",
+        "interval": "bootstrap_t",
+        "simulated_worst_case_coverage": 0.934,
+        "levels": [
+          0.68,
+          0.95
+        ]
+      },
+      "h2_stability": {
+        "rule": "donor_calibrated_subspace_stability",
+        "null_draws": 19,
+        "n_boot": 50
+      },
+      "near_duplicate_rule": {
+        "shingle_words": 5,
+        "jaccard_threshold": 0.5
+      },
+      "dyad_disjoint_contrast": "drop",
+      "h3_aggregation": "holm_min_over_dimensions",
+      "injection": {
+        "replicates_per_beta": 50,
+        "residual_resampling": "session_block_ordered",
+        "chunk_replicates": 250,
+        "cross_variant_permutation": {
+          "mean_log_f0": "articulation_rate",
+          "log_f0_range_p95_p5": "intensity_range",
+          "log_f0_slope_final_300ms": "pause_ratio",
+          "mean_intensity": "mean_log_f0",
+          "intensity_range": "longest_internal_pause",
+          "articulation_rate": "log_f0_range_p95_p5",
+          "pause_ratio": "log_f0_slope_final_300ms",
+          "longest_internal_pause": "mean_intensity"
+        }
+      },
+      "g1_rule": {
+        "alpha": 0.05,
+        "replicates_beta0": 2000,
+        "acceptance": "bradley_liberal_upper_bound"
+      },
+      "mde_power": 0.8,
+      "g2_plausible_range": "reporting_only",
+      "g3_rule": {
+        "alpha": 0.05,
+        "n2_vs_n1": "n2_null_median_above_n1_null_q95"
+      },
+      "neural_arm": "deferred",
+      "ssl_stack": {
+        "wavlm": "microsoft/wavlm-base-plus",
+        "hubert": "facebook/hubert-base-ls960",
+        "revisions": null,
+        "sample_rate_hz": 16000,
+        "pca_fit_max_turns": 20000,
+        "shard_turns": 500
+      },
+      "neural_training": {
+        "optimiser": "adamw",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.01,
+        "dropout": 0.1,
+        "grad_clip_norm": 1.0,
+        "batch_size": 64,
+        "max_epochs": 40,
+        "patience": 5,
+        "speaker_embedding_dim": 16,
+        "speaker_dropout": 0.2,
+        "search_grid": {
+          "learning_rate": [
+            0.0001,
+            0.0003,
+            0.001
+          ],
+          "dropout": [
+            0.1,
+            0.2
+          ]
+        }
+      },
+      "neural_gate_rules": {
+        "t1_recovery": "p_vs_30_draw_n1_at_most_alpha",
+        "alpha": 0.05,
+        "t2_replicates_beta0": 3
+      },
+      "ablation4_source": "wavlm_l6",
+      "hand_label_protocol": {
+        "n_pairs": 300,
+        "seed": 20260912,
+        "labeller": "study_author",
+        "blind_to_classifier": true
+      },
+      "confirmatory": true
+    }
+  },
+  "environment": {
+    "runtime": "colab",
+    "git_commit": "566d29752af99aac4901dae0469c7887f82fe506",
+    "code_fingerprint": "9b5146f3ab46b0fc",
+    "python": "3.13.16",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39"
+  },
+  "provenance": {
+    "split_hash": "19379138530a",
+    "n_pairs": 56629,
+    "n_sessions": 249,
+    "pairs_by_split": {
+      "train": 37600,
+      "test": 12107,
+      "val": 6922
+    },
+    "fitted": {
+      "speaker_stats": {
+        "name": "speaker_stats",
+        "source": "train",
+        "n_fit": 59802,
+        "fit_hash": "de1bef5691e9",
+        "split_hash": "19379138530a"
+      },
+      "orthogonaliser": {
+        "name": "block_orthogonaliser",
+        "source": "train",
+        "n_fit": 37600,
+        "fit_hash": "643b9588b6de",
+        "split_hash": "19379138530a"
+      },
+      "reply_text_pca": {
+        "name": "reply_text_pca",
+        "source": "train",
+        "n_fit": 37600,
+        "fit_hash": "643b9588b6de",
+        "split_hash": "19379138530a",
+        "k": 64,
+        "explained_total": 0.619134279387979
+      },
+      "partner_text_pca": {
+        "name": "partner_text_pca",
+        "source": "train",
+        "n_fit": 37600,
+        "fit_hash": "643b9588b6de",
+        "split_hash": "19379138530a",
+        "k": 64,
+        "explained_total": 0.6203388395792718
+      }
+    },
+    "checks": {
+      "standardisation_heldout_targets": {
+        "mean": [
+          0.027123299006708134,
+          -0.006034377516213597,
+          0.0022912139346395006,
+          0.02008020737502378,
+          -0.027474140248287388,
+          -0.011500752538518707,
+          -0.05312470979982236,
+          -0.04402435962681731
+        ],
+        "sd": [
+          1.022206899910401,
+          1.0224017707032516,
+          1.038365949775207,
+          1.035048153701765,
+          1.0106169321454432,
+          1.0182017424795422,
+          0.9698254688608801,
+          1.063991821190088
+        ],
+        "exactly_zero_one": false,
+        "n": 19029
+      },
+      "exclusions": {
+        "test": {
+          "included": 12107,
+          "simultaneous_onset": 40,
+          "reply_not_usable": 4613,
+          "partner_not_usable": 3408,
+          "no_self_previous": 389,
+          "self_previous_not_usable": 2460,
+          "no_n2_candidate": 469,
+          "All": 23486
+        },
+        "train": {
+          "included": 37600,
+          "simultaneous_onset": 160,
+          "reply_not_usable": 13459,
+          "partner_not_usable": 10172,
+          "no_self_previous": 1201,
+          "self_previous_not_usable": 7311,
+          "no_n2_candidate": 1899,
+          "All": 71802
+        },
+        "val": {
+          "included": 6922,
+          "simultaneous_onset": 19,
+          "reply_not_usable": 1347,
+          "partner_not_usable": 1083,
+          "no_self_previous": 209,
+          "self_previous_not_usable": 829,
+          "no_n2_candidate": 296,
+          "All": 10705
+        },
+        "All": {
+          "included": 56629,
+          "simultaneous_onset": 219,
+          "reply_not_usable": 19419,
+          "partner_not_usable": 14663,
+          "no_self_previous": 1799,
+          "self_previous_not_usable": 10600,
+          "no_n2_candidate": 2664,
+          "All": 105993
+        }
+      }
+    }
+  },
+  "created_utc": "2026-10-26T15:57:03+00:00",
+  "attempt": 5
+}

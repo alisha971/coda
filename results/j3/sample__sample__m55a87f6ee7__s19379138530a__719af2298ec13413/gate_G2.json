@@ -1,0 +1,33 @@
+{
+  "data_kind": "sample",
+  "run_key": "719af2298ec13413",
+  "content": {
+    "gate": "G2",
+    "status": "NOT_EVALUATED",
+    "criterion": "reporting requirement (registered rule): MDE and power stated; no effect-size threshold is established, so no pass/fail result exists",
+    "source": "Prereg \u00a710; the registered G2 reporting rule replaces the pass criterion",
+    "evidence": {
+      "mde": {
+        "aggregate": 0.002,
+        "aggregate_target_scale": 0.002,
+        "aggregate_realised_scale": 0.0017306841786716549,
+        "block": [
+          0.002,
+          0.002,
+          0.002,
+          0.002
+        ],
+        "power_level": 0.8,
+        "coupling": "identity_matched_dimensions",
+        "rule": "the larger of the target-scale and realised-scale MDE"
+      },
+      "mde_stated": true,
+      "reporting_rule_in_force": true
+    },
+    "settings": [
+      "mde_power",
+      "g2_plausible_range"
+    ],
+    "consequence": ""
+  }
+}
