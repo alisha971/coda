@@ -1,0 +1,10 @@
+dimension,turns,missing,share_missing,main_reason
+mean_log_f0,19680,1207,0.06133130081300813,too_few_voiced
+log_f0_range_p95_p5,19680,1207,0.06133130081300813,too_few_voiced
+log_f0_slope_final_300ms,19680,3364,0.1709349593495935,boundary_too_few_voiced
+mean_intensity,19680,55,0.0027947154471544716,no_speech_frames
+intensity_range,19680,144,0.007317073170731708,no_speech_frames
+articulation_rate,19680,0,0.0,
+pause_ratio,19680,0,0.0,
+longest_internal_pause,19680,0,0.0,
+any (turn dropped),19680,3448,0.17520325203252032,
