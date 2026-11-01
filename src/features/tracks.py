@@ -192,6 +192,15 @@ def extract_tracks(x: np.ndarray, sr: int, cfg: FeatureConfig | None = None,
     x = np.asarray(x, dtype=np.float64)
     if x.ndim != 1:
         raise ValueError("extract_tracks expects a mono signal")
+    if sr <= 0:
+        raise ValueError(f"sample rate must be positive, got {sr}")
+    min_duration_s = 6.4 / cfg.f0_floor_hz  # Praat intensity needs >= 6.4 / minimum pitch
+    duration_s = len(x) / sr
+    if duration_s < min_duration_s:
+        raise ValueError(
+            f"audio too short for Praat intensity: {duration_s:.6f}s; "
+            f"requires at least {min_duration_s:.6f}s"
+        )
     snd = parselmouth.Sound(x, sampling_frequency=sr)
     if speech_segments is None:
         pitch = _pitch(snd, cfg)

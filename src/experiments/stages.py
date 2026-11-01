@@ -132,7 +132,7 @@ def text_embeddings(paths: Paths, stage: str, encoder=None, model_info=None,
         fcfg = paths.load_config("features")["text"]
         encoder, model_info = load_minilm(fcfg["encoder"], fcfg.get("revision"))
     return encode_cached(turns["turn_id"].tolist(), turns["text"].fillna("").tolist(), encoder,
-                         paths.processed / "text_cache", model_info, shard_size)
+                         paths.processed / f"text_cache_{stage}", model_info, shard_size)
 
 
 def analysis_data(paths: Paths, stage: str, scheme: str = "speaker_disjoint",

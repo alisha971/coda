@@ -74,7 +74,8 @@ def process_interaction(rows: list[dict], root: str, scratch: str, cfg: dict) ->
 
     qc_rows, npz = [], {}
     durations = {f: (len(audio[f]) / meta[f]["sample_rate"]) if audio[f] is not None
-                 and audio[f].ndim == 1 else None for f in fids}
+                 and audio[f].ndim == 1 and meta[f].get("sample_rate") else None for f in fids}
+    min_intensity_duration_s = 6.4 / fcfg.f0_floor_hz
     for f in fids:
         partner = [g for g in fids if g != f]
         partner = partner[0] if partner else None
@@ -83,7 +84,13 @@ def process_interaction(rows: list[dict], root: str, scratch: str, cfg: dict) ->
                "participant_key": by_file[f]["participant_key"],
                "vendor_id": by_file[f]["vendor_id"], **meta[f]}
         x = audio[f]
-        if x is not None and x.ndim == 1 and meta[f].get("sample_rate"):
+        too_short_for_intensity = (
+            x is not None and x.ndim == 1 and meta[f].get("sample_rate")
+            and durations[f] is not None
+            and durations[f] < min_intensity_duration_s
+        )
+        if (x is not None and x.ndim == 1 and meta[f].get("sample_rate")
+                and not too_short_for_intensity):
             vad_iv = vads[f][["start", "end"]].to_numpy()
             word_iv = words[f][["start", "end"]].to_numpy() if len(words[f]) else None
             segs = speech_regions(vad_iv, word_iv, fcfg)
@@ -95,7 +102,14 @@ def process_interaction(rows: list[dict], root: str, scratch: str, cfg: dict) ->
             row.update(channel_measures(x, meta[f]["sample_rate"], tr, vads[f],
                                         vads[partner] if partner else vads[f], words[f]))
         else:
-            row.update(vad_speech_s=0.0, n_words_timed=int(len(words[f])))
+            # Keep metadata/QC for empty or too-short files, but never send them
+            # to Praat. They must fail QC rather than abort the entire session.
+            row.update(
+                vad_speech_s=total_seconds(vads[f][["start", "end"]].to_numpy()),
+                n_words_timed=int(len(words[f])),
+            )
+            if too_short_for_intensity:
+                row["measurement_error"] = "too_short_for_intensity"
         row["failure"] = objective_failure(
             exists=fetched[f], readable=meta[f].get("readable", False),
             sample_rate=meta[f].get("sample_rate"), channels=meta[f].get("channels"),
@@ -105,6 +119,11 @@ def process_interaction(rows: list[dict], root: str, scratch: str, cfg: dict) ->
             n_words_timed=row.get("n_words_timed", 0),
             expected_sr=qc_cfg["expected_sample_rate_hz"],
             max_mismatch_s=qc_cfg["max_pair_duration_mismatch_s"])
+        # If all other QC checks pass, reject a file that Praat cannot measure.
+        # Preserve higher-priority defects such as missing/unreadable/mismatched files.
+        if (too_short_for_intensity and row["failure"] not in {
+                "missing", "unreadable", "wrong_sample_rate", "not_mono", "duration_mismatch"}):
+            row["failure"] = "too_short_for_intensity"
         row["pair_duration_mismatch_s"] = (
             abs(durations[f] - durations[partner])
             if partner and durations[f] is not None and durations[partner] is not None
