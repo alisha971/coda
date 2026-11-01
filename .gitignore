@@ -268,8 +268,11 @@ to do.md
 docs/research_journal.md
 docs/session_log.md
 
-# Experiment report: remove this line when the report is final
+# Superseded Markdown draft of the report (the published report is report/index.html)
 docs/experiment_report.md
+
+# Listening examples in the published report are kept despite the audio rule above
+!/report/audio/*.wav
 
 
 # Pytest records tied to one machine's code fingerprint, and the first pilot snapshot
